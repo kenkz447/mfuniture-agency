@@ -1,0 +1,15 @@
+{
+    "name": "web-host",
+    "version": "0.0.1",
+    "scripts": {
+        "start": "node app"
+    },
+    "author": {
+        "name": "kenkz447"
+    },
+    "dependencies": {
+        "express": "^4.16.4",
+        "serve-favicon": "^2.3.0"
+    },
+    "main": "app.js"
+}

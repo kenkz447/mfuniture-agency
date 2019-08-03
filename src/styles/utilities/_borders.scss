@@ -1,0 +1,7 @@
+$borderPositions : top right bottom left;
+
+@each $borderPosition in $borderPositions {
+    .border-#{$borderPosition}-dashed {
+        border-#{$borderPosition}-style: dashed !important;
+    }
+}

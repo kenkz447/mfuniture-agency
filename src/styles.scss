@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,200");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css");
+
+@import "./styles/paper-kit.scss";
+@import "./styles/utilities.scss";
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+.container {
+    &-small {
+        max-width: 440px !important;
+    }
+
+    &-medium {
+        max-width: 768px !important;
+    }
+}
+
+.display {
+    &-none {
+        display: none;
+    }
+
+    &-flex {
+        display: flex;
+    }
+}
+
+.flex-direction {
+    &-row-reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+.font-size {
+    &-large {
+        font-size: larger;
+    }
+}
+
+.first-char-capitalize {
+    display: inline-block;
+
+    &::first-letter {
+        text-transform: capitalize;
+    }
+}
+
+.horizontal-scroll {
+    overflow: auto;
+    white-space: nowrap;
+}

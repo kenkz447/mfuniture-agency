@@ -1,0 +1,21 @@
+{
+    "short_name": "B+ Furniture",
+    "name": "B+ Furniture",
+    "icons": [
+        {
+            "src": "/static/logo-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/static/logo-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#FFFFFF",
+    "display": "fullscreen",
+    "theme_color": "#FFFFFF",
+    "orientation": "portrait"
+}

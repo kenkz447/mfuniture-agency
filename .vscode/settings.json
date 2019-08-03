@@ -1,0 +1,49 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "editor.formatOnType": true,
+    "eslint.enable": true,
+    "files.exclude": {
+        ".vscode/chrome/**": true
+    },
+    "files.watcherExclude": {
+        ".vscode/chrome/**": true
+    },
+    "html.format.extraLiners": "!",
+    "html.format.indentInnerHtml": true,
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/package.json"
+            ],
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "config": {
+                        "properties": {
+                            "port": {
+                                "type": "number",
+                                "description": "The port of the webpack-dev-server",
+                                "default": 3000
+                            },
+                            "host": {
+                                "type": "string",
+                                "description": "The hostname or ip of the webpack-dev-server",
+                                "default": "localhost"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "search.exclude": {
+        "dist/**": true,
+        "node_modules": true
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "tslint.configFile": "./tslint.json",
+    "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.count": 80,
+    "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.type": "newLineEachExpressionAfterCountLimit",
+    "importSorter.generalConfiguration.sortOnBeforeSave": true,
+    "importSorter.sortConfiguration.joinImportPaths": false
+}
