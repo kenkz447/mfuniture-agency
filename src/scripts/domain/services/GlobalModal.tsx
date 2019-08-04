@@ -20,7 +20,8 @@ const GlobalModal = (props: WithDomainContext) => {
     const {
         globalModal,
         globalModalVisibled,
-        globalModalProgressing
+        globalModalProgressing,
+        setContext
     } = props;
 
     if (!globalModal) {
@@ -40,26 +41,39 @@ const GlobalModal = (props: WithDomainContext) => {
                 id="globalModal"
                 isOpen={globalModalVisibled}
             >
-                <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
+                {
+                    title && <ModalHeader>{title}</ModalHeader>
+                }
                 <ModalBody>
                     {children}
                 </ModalBody>
                 <ModalFooter>
-                    <Button
-                        color="secondary"
-                        onClick={this.toggle}
-                    >
-                        Cancel
-                    </Button>
-                    <Button
-                        color="primary"
-                        onClick={onOk}
-                        disabled={globalModalProgressing}
-                    >
-                        {okLabel}
-                    </Button>
+                    <div className="left-side">
+                        <Button
+                            className="btn-link"
+                            color="default"
+                            type="button"
+                            onClick={() => setContext({
+                                globalModalVisibled: false
+                            })}
+                        >
+                            Hủy
+                        </Button>
+                    </div>
+                    <div className="divider" />
+                    <div className="right-side">
+                        <Button
+                            className="btn-link"
+                            color="danger"
+                            type="button"
+                            onClick={onOk}
+                            disabled={globalModalProgressing}
+                        >
+                            {okLabel}
+                        </Button>
+                    </div>
                 </ModalFooter>
-            </Modal>
+            </Modal >
         ),
         modalNode
     );

@@ -1,3 +1,5 @@
+import './Notifications.scss';
+
 import { events } from 'qoobee';
 import * as React from 'react';
 import {

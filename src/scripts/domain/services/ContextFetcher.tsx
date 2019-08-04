@@ -1,6 +1,6 @@
 import {
     agencyResources,
-    furnitureComponentGroupResources,
+    orderDetailResources,
     productTypeGroupResources,
     request
 } from '@/restful';
@@ -34,14 +34,16 @@ export class ContextFetcher extends BaseComponent<{}, ContextFetcherState> {
             return;
         }
 
-        const [currentAgency, allProductTypeGroup] = await Promise.all([
+        const [currentAgency, allProductTypeGroup, cartOrderDetails] = await Promise.all([
             request(agencyResources.findOneByUser, { type: 'path', parameter: 'userId', value: currentUser.id }),
             request(productTypeGroupResources.find),
+            request(orderDetailResources.find)
         ]);
 
         setContext({
             cuurentAgency: currentAgency,
-            allProductTypeGroup: allProductTypeGroup
+            allProductTypeGroup: allProductTypeGroup,
+            cartOrderDetails: cartOrderDetails
         });
 
         this.setState({

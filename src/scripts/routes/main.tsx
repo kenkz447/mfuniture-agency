@@ -4,16 +4,20 @@ import { Route, Switch } from 'react-router';
 
 import { NotFoundPage } from '@/components';
 
+import { RouteCart } from './cart';
 import { RouteCatalogDetails } from './catalog-details';
 import { RouteCatalogs } from './catalogs';
 import { RouteHome } from './home';
-import { RouteLogin } from './login';
+import { RouteOrderDetail } from './order-detail';
+import { RouteOrders } from './orders';
 
 export const routes = routeFrom([
-    RouteLogin,
     RouteHome,
     RouteCatalogs,
-    RouteCatalogDetails
+    RouteCatalogDetails,
+    RouteCart,
+    RouteOrderDetail,
+    RouteOrders
 ]);
 
 export default () => (

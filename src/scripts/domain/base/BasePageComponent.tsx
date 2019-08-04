@@ -13,14 +13,20 @@ export class BasePageComponent<P extends AppPageProps> extends RoutePage<P> {
         setContext({
             routeParams: this.props.match.params
         });
+
+        window.scrollTo({
+            top: 0
+        });
     }
 
     public componentWillUnmount() {
         const { setContext } = this.context;
 
         setContext({
-            routeParams: null
+            routeParams: null,
+            globalModal: null,
+            globalModalVisibled: false,
+            globalModalProgressing: false,
         });
     }
-
 }

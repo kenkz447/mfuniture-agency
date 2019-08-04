@@ -1,4 +1,4 @@
-import { DATE_FORMAT } from '@/configs';
+import { defaultDateFormat } from '@/configs';
 import { Order } from '@/restful';
 import { formatDate } from '@/utilities';
 
@@ -11,5 +11,5 @@ export const getOrderShippingDateLabel = (order: Order) => {
         return 'Chưa xác định';
     }
 
-    return formatDate(order.shippingDate, DATE_FORMAT);
+    return formatDate(order.shippingDate, defaultDateFormat);
 };

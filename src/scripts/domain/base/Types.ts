@@ -3,11 +3,11 @@ import { WithContextProps } from 'react-context-service';
 import { RouteComponentProps } from 'react-router';
 import { ModalProps } from 'reactstrap';
 
-import { Agency, ProductTypeGroup, User } from '@/restful';
+import { Agency, OrderDetail, ProductTypeGroup, User } from '@/restful';
 
 import { AuthClient } from './AuthClient';
 
-interface GlobalModalModalProps extends ModalProps {
+interface GlobalModalModalProps extends Partial<ModalProps> {
     readonly onOk: () => void;
     readonly okLabel: string;
 }
@@ -19,11 +19,12 @@ interface IdentyContext {
 interface DataContext {
     readonly cuurentAgency: Agency;
     readonly allProductTypeGroup: ProductTypeGroup[];
+    readonly cartOrderDetails: OrderDetail[];
 }
 
 interface DomainContext extends IdentyContext, DataContext, AppCoreContext<User> {
     readonly authClient: AuthClient<{}>;
-    readonly globalModal?: GlobalModalModalProps;
+    readonly globalModal?: GlobalModalModalProps | null;
     readonly globalModalProgressing?: boolean;
     readonly globalModalVisibled?: boolean;
     // tslint:disable-next-line:no-any

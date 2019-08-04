@@ -14,7 +14,7 @@ module.exports = (options) => {
 
     return {
         mode: 'development',
-        devtool: 'cheap-module-source-map',
+        devtool: 'cheap-module-eval-source-map',
         entry: [
             `webpack-dev-server/client?http://${host}:${port}`,
             'webpack/hot/only-dev-server',

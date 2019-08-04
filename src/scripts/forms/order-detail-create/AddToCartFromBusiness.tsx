@@ -10,7 +10,7 @@ import { AddToCartFormControl } from './AddToCartFromControl';
 
 interface AddToCartFromBusinessProps {
     readonly initialValue: AddToCartFormValues;
-    readonly modulesCode: string;
+    readonly onSuccess: () => void;
 }
 
 export class AddToCartFromBusiness extends BaseComponent<AddToCartFromBusinessProps> {
@@ -26,6 +26,9 @@ export class AddToCartFromBusiness extends BaseComponent<AddToCartFromBusinessPr
     }
 
     public render() {
+        const { cartOrderDetails, setContext } = this.context;
+        const { onSuccess } = this.props;
+
         const initialValues = this.getAddToCartFormInitValues();
         const disableAddToCart = false;
 
@@ -33,12 +36,17 @@ export class AddToCartFromBusiness extends BaseComponent<AddToCartFromBusinessPr
             <BusinessController
                 action={upsertOrderDetail}
                 onSuccess={(orderDetail: OrderDetail) => {
-                    if (!orderDetail.storedPromoCode) {
-                        return;
-                    }
+                    setContext({
+                        cartOrderDetails: [
+                            ...cartOrderDetails,
+                            orderDetail
+                        ]
+                    });
+
+                    onSuccess();
                 }}
             >
-                {(doBusiness) => (
+                {({ doBusiness }) => (
                     <AddToCartFormControl
                         initialValues={initialValues}
                         submitDisabled={disableAddToCart}

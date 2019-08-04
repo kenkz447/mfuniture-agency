@@ -107,6 +107,7 @@ module.exports = {
                     query: { happyPackMode: true },
                     options: {
                         transpileOnly: true,
+                        experimentalWatchApi: true,
                         getCustomTransformers: () => ({
                             before: [tsImportPluginFactory( /** options */)]
                         })

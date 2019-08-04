@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const PageContentWrapper = styled.main`
-    min-height: inherit;
     margin-top: 94px;
+    flex-grow: 1;
 `;
 
 interface PageContentProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
@@ -19,6 +19,7 @@ export class PageContent extends React.PureComponent<PageContentProps> {
 
         return (
             <PageContentWrapper
+                className="mb-5"
                 {...rest}
             >
                 {this.props.children}

@@ -1,4 +1,3 @@
-import { DomainContext } from '@/domain';
 import { Order, orderResources, request } from '@/restful';
 import { genCodeWithCurrentDate } from '@/utilities';
 
@@ -8,7 +7,7 @@ import {
     isOrderHasExternalMaterials
 } from '../getters';
 
-export const upsertOrder = (order: Partial<Order>, context: DomainContext) => {
+export const upsertOrder = (order: Partial<Order>) => {
     if (!order.orderDetails) {
         throw 'Không có sản phẩm nào!';
     }

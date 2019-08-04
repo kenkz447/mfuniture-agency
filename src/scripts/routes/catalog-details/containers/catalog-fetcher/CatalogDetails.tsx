@@ -3,24 +3,33 @@ import { Link } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
 
 import { getUploadedFileSrc } from '@/business/uploaded-file';
-import { CALALOG_URL } from '@/configs';
+import { CALALOG_URL, CART_URL } from '@/configs';
+import { BaseComponent } from '@/domain';
 import { AddToCartFromBusiness } from '@/forms/order-detail-create';
 import { Catalog } from '@/restful';
+import { getObjectId } from '@/restful/base';
 import { formatCurrency, replaceRoutePath } from '@/utilities';
 
-import { CatalogCarousel } from './catalog-details';
+import { CatalogAddToCart, CatalogCarousel } from './catalog-details';
 
 interface CatalogDetailsProps {
     readonly catalog: Catalog;
 }
 
-export class CatalogDetails extends React.PureComponent<CatalogDetailsProps> {
+interface CatalogDetailsState {
+    readonly addedToCart: boolean;
+}
+
+export class CatalogDetails extends BaseComponent<CatalogDetailsProps, CatalogDetailsState> {
+
     public render() {
         const { catalog } = this.props;
 
         return (
             <div>
-                <h2 className="h5 mb-5 ml-3">Thông tin sản phẩm</h2>
+                <h2 className="h5 mb-3 mb-lg-5">
+                    Thông tin sản phẩm
+                </h2>
                 <Row>
                     <Col md="7" sm="6">
                         <CatalogCarousel catalog={catalog} />
@@ -38,23 +47,7 @@ export class CatalogDetails extends React.PureComponent<CatalogDetailsProps> {
                                 {formatCurrency(catalog.recommendedPrice)}
                             </strong>
                         </div>
-                        <div>
-                            <p className="text-black-50 mb-3">Chọn mua sản phẩm này</p>
-                            <AddToCartFromBusiness
-                                modulesCode=""
-                                initialValue={{
-                                    previewImg: getUploadedFileSrc({
-                                        uploadedFile: catalog.thumbnail,
-                                        size: 'img256x256'
-                                    }),
-                                    catalogId: catalog.id,
-                                    productDesign: catalog.design,
-                                    productModulesCode: catalog.moduleCodes,
-                                    product_type: catalog.productType,
-                                    totalPrice: 0
-                                }}
-                            />
-                        </div>
+                        <CatalogAddToCart catalog={catalog} />
                     </Col>
                 </Row>
             </div>

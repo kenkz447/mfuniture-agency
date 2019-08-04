@@ -38,6 +38,7 @@ export class AddToCartForm extends React.PureComponent<
         const {
             handleSubmit,
             setFieldValue,
+            isSubmitting,
             values
         } = this.props;
 
@@ -85,6 +86,7 @@ export class AddToCartForm extends React.PureComponent<
                     type="submit"
                     className="btn-round"
                     color="danger"
+                    disabled={isSubmitting}
                 >
                     Thêm vào giỏ
                 </Button>

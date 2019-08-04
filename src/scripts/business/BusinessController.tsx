@@ -1,27 +1,29 @@
+import debounce from 'lodash/debounce';
 import { RootContext } from 'qoobee';
 import * as React from 'react';
 import { WithContextProps } from 'react-context-service';
 
 import { WithDomainContext } from '@/domain';
-import { confirm, ConfirmType } from '@/effects';
-import { showWarning } from '@/effects/Notification';
+import { confirm, ConfirmType, showError } from '@/effects';
+
+interface BusinessControllerRenderProps<T, R> {
+    readonly doBusiness: (customParams?: T) => Promise<R>;
+    readonly loading: boolean;
+    readonly context: WithContextProps<WithDomainContext>;
+}
 
 export interface BusinessControllerProps<T, R = {}> {
+    readonly deboucingTime?: number;
     readonly params?: T;
-    // tslint:disable-next-line:no-any
-    readonly action: (params: T, context: WithContextProps<WithDomainContext>) => Promise<any>;
-    readonly children: (
-        doBusiness: (customParams?: T) => Promise<R>,
-        loading: boolean,
-        context: WithContextProps<WithDomainContext>
-    ) => React.ReactNode;
     readonly needsConfirm?: boolean;
     readonly confirmTitle?: string;
     readonly confirmContent?: string;
     readonly confirmType?: ConfirmType;
+    readonly action: (params: T, context: WithContextProps<WithDomainContext>) => Promise<{}>;
     readonly onActionBegin?: (param: T, context: WithContextProps<WithDomainContext>) => void;
     readonly onSuccess?: (result: R, context: WithContextProps<WithDomainContext>) => void;
     readonly onFail?: (error: unknown, context: WithContextProps<WithDomainContext>) => void;
+    readonly children: (renderProps: BusinessControllerRenderProps<T, R>) => React.ReactNode;
 }
 
 export class BusinessController<T> extends React.PureComponent<BusinessControllerProps<T>> {
@@ -32,7 +34,15 @@ export class BusinessController<T> extends React.PureComponent<BusinessControlle
         loading: false
     };
 
-    private readonly doBusiness = async (customParams?: T) => {
+    constructor(props: BusinessControllerProps<T>) {
+        super(props);
+
+        if (props.deboucingTime) {
+            this.doBusiness = debounce(this.doBusiness, props.deboucingTime);
+        }
+    }
+
+    public readonly doBusiness = async (customParams?: T) => {
         const {
             action,
             needsConfirm,
@@ -43,25 +53,21 @@ export class BusinessController<T> extends React.PureComponent<BusinessControlle
             onSuccess,
             onFail
         } = this.props;
-
-        if (this.state.loading) {
-            return;
-        }
-
         try {
             let actionResult;
+
             const params = customParams || this.props.params;
             if (!params) {
                 throw new Error('Missing params in action');
             }
 
-            this.setState({
-                loading: true
-            });
-
             if (onActionBegin) {
                 onActionBegin(params, this.context);
             }
+
+            this.setState({
+                loading: true
+            });
 
             if (!needsConfirm) {
                 actionResult = await action(params, this.context);
@@ -72,7 +78,7 @@ export class BusinessController<T> extends React.PureComponent<BusinessControlle
                 }
             }
 
-            if (actionResult && onSuccess) {
+            if (onSuccess) {
                 onSuccess(actionResult, this.context);
             }
 
@@ -83,9 +89,8 @@ export class BusinessController<T> extends React.PureComponent<BusinessControlle
             }
 
             if (typeof error === 'string') {
-                showWarning(error);
+                showError(error);
             }
-
             throw error;
         } finally {
             this.setState({
@@ -98,6 +103,10 @@ export class BusinessController<T> extends React.PureComponent<BusinessControlle
         const { children } = this.props;
         const { loading } = this.state;
 
-        return children(this.doBusiness, loading, this.context);
+        return children({
+            doBusiness: this.doBusiness,
+            loading: loading,
+            context: this.context
+        });
     }
 }

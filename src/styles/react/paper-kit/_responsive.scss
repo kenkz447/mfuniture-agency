@@ -43,7 +43,7 @@
 }
 @media (max-width: 767px){
   .navbar .navbar-nav .dropdown-menu {
-      overflow-y: scroll;
+      overflow-y: auto;
   }
 }
 @media (max-width: 991px){

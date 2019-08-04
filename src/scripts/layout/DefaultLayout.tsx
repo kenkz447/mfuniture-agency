@@ -2,7 +2,13 @@ import './DefaultLayout.scss';
 
 import * as React from 'react';
 
-import { PageContent, PageHeader, PageWrapper } from '@/components';
+import {
+    PageContent,
+    PageFooter,
+    PageHeader,
+    PageWrapper,
+    SlideUp
+} from '@/components';
 import { BaseComponent } from '@/domain';
 
 interface DefaultLayoutProps {
@@ -21,11 +27,14 @@ export class DefaultLayout extends BaseComponent<DefaultLayoutProps, DefaultLayo
         const { cuurentAgency } = this.context;
 
         return (
-            <PageWrapper id="calatalogPage">
+            <PageWrapper>
                 <PageHeader title={cuurentAgency.name} />
                 <PageContent>
-                    {this.props.children}
+                    <SlideUp key={location.pathname}>
+                        {this.props.children}
+                    </SlideUp>
                 </PageContent>
+                <PageFooter />
             </PageWrapper>
         );
     }

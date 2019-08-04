@@ -3,29 +3,34 @@ import * as React from 'react';
 import { Route, Router, Switch } from 'react-router';
 
 import { PageLoading } from '@/components';
+import { LOGIN_URL } from '@/configs';
 import { WithDomainContext } from '@/domain';
-import { DefaultLayout } from '@/layout';
+import { BlankLayout, DefaultLayout } from '@/layout';
 
 const MainRoutes = React.lazy(() => import('./main'));
+const AuthenticationRoutes = React.lazy(() => import('./authentication'));
 
 export class RouterRoot extends React.PureComponent {
     public static readonly contextType = RootContext;
     public readonly context!: WithDomainContext;
 
-    private readonly getLayoutComponent = () => {
-        return DefaultLayout;
+    private readonly authenticationRouteComponent = () => {
+        return (
+            <BlankLayout>
+                <React.Suspense fallback={<PageLoading />}>
+                    <AuthenticationRoutes />
+                </React.Suspense>
+            </BlankLayout>
+        );
     }
 
     private readonly mainRouteComponent = () => {
-
-        const Layout = this.getLayoutComponent();
-
         return (
-            <Layout>
+            <DefaultLayout>
                 <React.Suspense fallback={<PageLoading />}>
                     <MainRoutes />
                 </React.Suspense>
-            </Layout>
+            </DefaultLayout>
         );
     }
 
@@ -35,7 +40,10 @@ export class RouterRoot extends React.PureComponent {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route >
+                    <Route path={LOGIN_URL}>
+                        {this.authenticationRouteComponent}
+                    </Route>
+                    <Route>
                         {this.mainRouteComponent}
                     </Route>
                 </Switch>

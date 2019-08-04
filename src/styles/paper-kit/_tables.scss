@@ -117,7 +117,9 @@
     }
     .img-container{
         border-radius: $border-radius-large;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100px;
         overflow: hidden;
         width: 100px;

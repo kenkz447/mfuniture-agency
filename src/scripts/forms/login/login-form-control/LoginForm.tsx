@@ -1,14 +1,6 @@
 import { FormikProps } from 'formik';
 import * as React from 'react';
-import {
-    Alert,
-    Button,
-    Card,
-    CardTitle,
-    Form,
-    FormText,
-    Input
-} from 'reactstrap';
+import { Alert, Button, Card, CardTitle, Form, Input } from 'reactstrap';
 
 import { AuthLoginRequestBody } from '@/restful';
 
@@ -34,7 +26,7 @@ export function LoginForm(props: LoginFormOwnProps) {
                     <Alert color="danger">{status.error}</Alert>
                 )
             }
-            <CardTitle tag="h3">Welcome</CardTitle>
+            <CardTitle tag="h2">B+</CardTitle>
             <Form className="register-form" onSubmit={handleSubmit}>
                 <label>Email</label>
                 <Input

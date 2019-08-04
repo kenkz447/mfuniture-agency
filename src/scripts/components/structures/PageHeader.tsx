@@ -3,22 +3,18 @@ import { UnregisterCallback } from 'history';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-    Button,
     Collapse,
     Container,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
     Nav,
     Navbar,
     NavbarBrand,
-    UncontrolledDropdown,
     UncontrolledTooltip
 } from 'reactstrap';
 
+import { HOME_URL } from '@/configs';
 import { BaseComponent } from '@/domain';
 
-import { HeaderCatalogMenu } from './page-header';
+import { HeaderCartBtn, HeaderCatalogMenu } from './page-header';
 
 interface PageHeaderProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
     readonly title: string;
@@ -53,6 +49,9 @@ export class PageHeader extends BaseComponent<PageHeaderProps, PageHeaderState> 
                 collapseOpen: false
             });
         });
+
+        const headroom = new Headroom(document.getElementById('mainNav'));
+        headroom.init();
     }
 
     public componentWillUnmount() {
@@ -85,10 +84,10 @@ export class PageHeader extends BaseComponent<PageHeaderProps, PageHeaderState> 
                         />
                     )
                 }
-                <Navbar className="fixed-top" expand="lg" id="navbar-main">
+                <Navbar id="mainNav" className="fixed-top" expand="lg" >
                     <Container>
                         <div className="navbar-translate">
-                            <NavbarBrand id="navbar-brand" to="/" tag={Link}>
+                            <NavbarBrand id="navbar-brand" className="pl-lg-0" to={HOME_URL} tag={Link}>
                                 {title}
                             </NavbarBrand>
                             <UncontrolledTooltip placement="bottom" target="navbar-brand">
@@ -113,7 +112,7 @@ export class PageHeader extends BaseComponent<PageHeaderProps, PageHeaderState> 
                         <Collapse navbar={true} isOpen={collapseOpen}>
                             <Nav className="ml-auto" navbar={true}>
                                 <HeaderCatalogMenu />
-                                <Button color="link" className="btn-danger">Giỏ hàng</Button>
+                                <HeaderCartBtn />
                             </Nav>
                         </Collapse>
                     </Container>

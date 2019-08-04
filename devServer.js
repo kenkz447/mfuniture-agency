@@ -18,8 +18,8 @@ function run(port) {
         port: port,
         defineOptions: {
             FILE_HOST: JSON.stringify('http://admin.mfurniture.vn'),
-            API_ENTRY: JSON.stringify('http://admin.mfurniture.vn'),
-            // API_ENTRY: JSON.stringify('http://localhost:1338'),
+            // API_ENTRY: JSON.stringify('http://admin.mfurniture.vn'),
+            API_ENTRY: JSON.stringify('http://localhost:1337'),
             SUB_ENV: JSON.stringify('dev')
         }
     })
@@ -28,7 +28,6 @@ function run(port) {
     const compiler = webpack(webpackConfig);
 
     const devServerConfig = {
-        publicPath: '/',
         hot: true,
         historyApiFallback: true,
         stats: {

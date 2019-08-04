@@ -78,3 +78,15 @@ export const isRecordEqual = (
 
     return false;
 };
+
+export const getObjectId = (obj: undefined | string | { readonly id?: string }) => {
+    if (!obj) {
+        return undefined;
+    }
+
+    if (typeof obj === 'string') {
+        return obj;
+    }
+
+    return obj.id;
+};

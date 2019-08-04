@@ -2,7 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const PageWrapperElement = styled.div`
-    min-height: inherit;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 `;
 
 interface PageWrapperProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
