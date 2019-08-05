@@ -63,12 +63,12 @@ module.exports = {
                 'theme-color': manifest.theme_color
             }
         }),
+        new InjectStaticWepackPlugin({
+            staticDir: staticDir
+        }),
         new ModifyHtmlWebpackPlugin({
             lang: 'vi',
             noscriptMessage: 'Javascript is not enabled, please turn it on to view app content!'
-        }),
-        new InjectStaticWepackPlugin({
-            staticDir: staticDir
         }),
         new HappyPack({
             id: 'styles',

@@ -28,12 +28,13 @@ class InjectStaticWepackPlugin {
                     slash(injectFile)
                 );
             }
+            
+            compilation.hooks.htmlWebpackPluginBeforeHtmlGeneration.tap('InjectStaticWepackPlugin', ({ assets }) => {
+                for (const cssInjectPath of cssInjectPaths) {
+                    assets.css.unshift(cssInjectPath)
+                };
 
-            compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tap('InjectStaticWepackPlugin', ({ html }) => {
-                const links = cssInjectPaths.map(injectPath => `<link rel="stylesheet" href="${injectPath}" />`).join();
-                return ({
-                    html: html.replace('</head>', links + '</head>')
-                });
+                console.log(assets.css)
             });
         });
     }
