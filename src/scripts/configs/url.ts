@@ -10,3 +10,8 @@ export const ORDERS_URL = '/orders';
 export const ORDER_DETAIL_URL = ORDERS_URL + '/:orderId';
 
 export const SETTING_URL = '/settings';
+
+export const AUTH_PATH = '/auth';
+
+export const FORGOT_PASSWORD_URL = AUTH_PATH + '/forgot-password';
+export const RESET_PASSWORD_URL = AUTH_PATH + '/reset-password';

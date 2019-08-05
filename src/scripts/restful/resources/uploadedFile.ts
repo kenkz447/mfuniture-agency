@@ -22,9 +22,9 @@ export const uploadedFileSchema = yup.object().shape<UploadedFile>({
     size: yup.number(),
     url: yup.string(),
     provider: yup.string(),
-    img256x256: yup.string().nullable(true),
-    img512x512: yup.string().nullable(true),
-    img1024x1024: yup.string().nullable(true)
+    img256x256: yup.string().default(''),
+    img512x512: yup.string().default(''),
+    img1024x1024: yup.string().default('')
 });
 
 export type ImgSize = 'img256x256' | 'img512x512' | 'img1024x1024';

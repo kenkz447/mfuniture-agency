@@ -35,7 +35,7 @@ export const issueTicketSchema = yup.object().shape<IssueTicket>({
     title: yup.string().required(),
     status: yup.mixed().oneOf(['open', 'processing', 'close'] as IssueTicketStatus[]),
     openDate: yup.date().required(),
-    created_by: userSchema.nullable(true).default(null),
+    created_by: userSchema.required(),
     issueTicketAgency: yup.object(),
     code: yup.string().required(),
     type: yup.mixed().oneOf(['order_complain', 'order_cancel'] as IssueTicketType[]),

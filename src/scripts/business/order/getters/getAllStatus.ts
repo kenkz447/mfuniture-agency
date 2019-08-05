@@ -1,6 +1,4 @@
-import { OptionProps } from 'antd/lib/select';
-
-export const getAllOrderStatus = (): OptionProps[] => {
+export const getAllOrderStatus = () => {
     return [
         { value: 'new', title: 'Mới' },
         { value: 'confirmed', title: 'Đã xác nhận' },

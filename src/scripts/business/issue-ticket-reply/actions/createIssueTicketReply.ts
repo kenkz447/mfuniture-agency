@@ -1,4 +1,4 @@
-import { WithCurrentUser } from '@/domain';
+import { WithDomainContext } from '@/domain';
 import {
     IssueTicket,
     IssueTicketReply,
@@ -8,7 +8,7 @@ import {
 
 export const createIssueTicketReply = (
     ticketReply: Partial<IssueTicket>,
-    context: WithCurrentUser
+    context: WithDomainContext
 ) => {
     const { currentUser } = context;
 

@@ -65,7 +65,7 @@ export const invitationResources = {
             email: yup.string().email().required(),
             password: yup.string().required(),
             rePassword: yup.string()
-                .oneOf([yup.ref('password'), null], 'Passwords must match')
+                .oneOf([yup.ref('password'), ''], 'Passwords must match')
         })
     }),
     delete: new Resource<Invitation>({

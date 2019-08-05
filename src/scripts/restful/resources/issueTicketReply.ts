@@ -18,7 +18,7 @@ export const issueTicketReplySchema = yup.object().shape<IssueTicketReply>({
     authorName: yup.string().required(),
     createdAt: yup.string(),
     id: yup.string(),
-    created_by: userSchema.nullable(true).default(null),
+    created_by: userSchema.required(),
     issueTicket: issueTicketSchema
 });
 

@@ -1,8 +1,7 @@
-import { User } from 'firebase';
-
 import { FurnitureComponent } from './furnitureComponent';
 import { FurnitureMaterial } from './furnitureMaterial';
 import { OrderDetail } from './orderDetail';
+import { User } from './user';
 
 export interface OrderDetailMaterialNorm {
     readonly id: string;

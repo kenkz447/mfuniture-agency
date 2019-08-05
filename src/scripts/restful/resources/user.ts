@@ -25,9 +25,9 @@ export interface User {
     readonly password?: string;
     readonly rePassword?: string;
 
-    readonly registration_businessAreas?: string;
-    readonly registration_companyName?: string;
-    readonly registration_companyAddress?: string;
+    readonly registration_businessAreas?: string | null;
+    readonly registration_companyName?: string | null;
+    readonly registration_companyAddress?: string | null;
 
     readonly reflinkCode?: string;
     readonly reflink?: Reflink;
@@ -46,7 +46,7 @@ export const userSchema = yup.object().shape<User>({
     email: yup.string().email().required(),
     fullName: yup.string().required(),
     confirmed: yup.bool(),
-    role: roleSchema.nullable(true).default(null),
+    role: roleSchema.required(),
     username: yup.string().required(),
     phone: yup.string().required(),
 

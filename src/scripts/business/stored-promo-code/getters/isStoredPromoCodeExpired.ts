@@ -1,6 +1,10 @@
+import * as moment from 'moment';
+
 import { StoredPromoCode } from '@/restful';
 import { isFutureDate } from '@/utilities';
 
 export const isStoredPromoCodeExpired = (storedPromoCode: StoredPromoCode) => {
-    return !isFutureDate(storedPromoCode.expiredAt);
+    return !isFutureDate(
+        moment(storedPromoCode.expiredAt)
+    );
 };

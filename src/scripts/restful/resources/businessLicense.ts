@@ -1,16 +1,16 @@
-import { Record, Resource, ResourceType } from 'react-restful';
+import { Resource, ResourceType } from 'react-restful';
 import * as yup from 'yup';
 
 import { UploadedFile, uploadedFileSchema } from './uploadedFile';
-import { User, userSchema } from './user';
+import { User } from './user';
 
 export interface BusinessLicense {
     readonly id: string;
-    readonly created_by: User;
+    readonly created_by?: User;
     readonly companyName: string;
     readonly companyAddress: string;
     readonly businessAreas: string;
-    readonly businessLicense: UploadedFile;
+    readonly businessLicense: UploadedFile | null;
     readonly isBusiness: boolean;
     readonly status?: 'pending' | 'accepted' | 'rejected';
 }
@@ -20,7 +20,6 @@ export const businessLicenseSchema = yup.object().shape<BusinessLicense>({
     companyName: yup.string(),
     companyAddress: yup.string(),
     businessAreas: yup.string(),
-    created_by: userSchema.nullable(true).default(null),
     businessLicense: uploadedFileSchema.nullable().default(null),
     isBusiness: yup.boolean().required()
 });
