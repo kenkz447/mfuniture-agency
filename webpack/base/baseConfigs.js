@@ -19,7 +19,7 @@ const manifest = require(manifestPath);
 const staticDirName = 'static';
 const outputDirName = 'dist';
 
-const staticDir = path.join('/', staticDirName);
+const staticDir = path.join('/', staticDirName, '/');
 const outputPath = path.join(process.cwd(), outputDirName, staticDirName);
 
 module.exports = {

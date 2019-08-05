@@ -6,6 +6,7 @@ module.exports = getBuildConfig({
     definitions: {
         VERSION_HASH: '$Id$',
         SUB_ENV: 'production',
+        FILE_HOST: 'http://admin.mfurniture.vn',
         API_ENTRY: 'http://admin.mfurniture.vn',
         SENTRY_ID: 'https://802c5412246d42258a4b295c98b0954a@sentry.io/1520601',
     },
