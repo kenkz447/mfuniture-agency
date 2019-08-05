@@ -41,7 +41,7 @@ export class ContextFetcher extends BaseComponent<{}, ContextFetcherState> {
         ]);
 
         setContext({
-            cuurentAgency: currentAgency,
+            curentAgency: currentAgency,
             allProductTypeGroup: allProductTypeGroup,
             cartOrderDetails: cartOrderDetails
         });

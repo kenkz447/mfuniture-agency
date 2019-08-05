@@ -8,3 +8,5 @@ export const CART_URL = '/cart';
 
 export const ORDERS_URL = '/orders';
 export const ORDER_DETAIL_URL = ORDERS_URL + '/:orderId';
+
+export const SETTING_URL = '/settings';

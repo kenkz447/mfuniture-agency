@@ -39,6 +39,10 @@ export const catalogResources = {
             value: 'viewOrder:DESC,isNewProduct:DESC,id:DESC'
         }]
     }),
+    findRelated: new Resource<Catalog, Catalog[]>({
+        resourceType: catalogResourceType,
+        url: '/catalog/related/:id'
+    }),
     findOne: new Resource<Catalog>({
         resourceType: catalogResourceType,
         url: '/catalog/:id'

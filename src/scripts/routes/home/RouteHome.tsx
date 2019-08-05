@@ -10,7 +10,7 @@ import { replaceRoutePath } from '@/utilities';
 export class RouteHome extends BasePageComponent<AppPageProps> {
     public static readonly routeInfo: RouteInfo = {
         path: HOME_URL,
-        title: 'B+ Furniture',
+        title: 'Trang chủ',
         exact: true,
         policies: [policies.locationAllowed]
     };

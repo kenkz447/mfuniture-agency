@@ -5,14 +5,14 @@ import { Container } from 'reactstrap';
 import { PRODUCT_URL } from '@/configs';
 import { AppPageProps, BasePageComponent, policies } from '@/domain';
 
-import { CatalogFetcher } from './containers';
+import { CatalogFetcher, RelatedProductsFetcher } from './containers';
 
 type RouteCatalogDetailsProps = AppPageProps<{ readonly catalogId: string }>;
 
 export class RouteCatalogDetails extends BasePageComponent<RouteCatalogDetailsProps> {
     public static readonly routeInfo: RouteInfo = {
         path: PRODUCT_URL,
-        title: 'B+ Furniture',
+        title: 'Xem sản phẩm',
         exact: true,
         policies: [policies.locationAllowed]
     };
@@ -22,7 +22,13 @@ export class RouteCatalogDetails extends BasePageComponent<RouteCatalogDetailsPr
 
         return (
             <Container>
-                <CatalogFetcher catalogId={match.params.catalogId} />
+                <div className="mb-5">
+                    <CatalogFetcher catalogId={match.params.catalogId} />
+                </div>
+                <div>
+                    <h5 className="mb-4">Sản phẩm liên quan</h5>
+                    <RelatedProductsFetcher catalogId={match.params.catalogId} />
+                </div>
             </Container>
         );
     }

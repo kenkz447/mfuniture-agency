@@ -26,7 +26,7 @@ export function LoginForm(props: LoginFormOwnProps) {
                     <Alert color="danger">{status.error}</Alert>
                 )
             }
-            <CardTitle tag="h2">B+</CardTitle>
+            <CardTitle tag="h2">M</CardTitle>
             <Form className="register-form" onSubmit={handleSubmit}>
                 <label>Email</label>
                 <Input

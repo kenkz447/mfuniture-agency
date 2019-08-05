@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 
-import { LOGIN_URL, ORDERS_URL } from '@/configs';
+import { LOGIN_URL, ORDERS_URL, SETTING_URL } from '@/configs';
 import { BaseComponent } from '@/domain';
 
 interface PageFooterProps {
@@ -16,7 +16,7 @@ export class PageFooter extends BaseComponent<PageFooterProps> {
             <footer className="footer footer-black footer-white">
                 <Container>
                     <Row>
-                        <Col>
+                        <Col lg={6}>
                             <nav className="footer-nav">
                                 <ul className="text-center text-lg-left">
                                     <li>
@@ -36,6 +36,14 @@ export class PageFooter extends BaseComponent<PageFooterProps> {
                                         </Link>
                                     </li>
                                     <li>
+                                        <Link
+                                            to={SETTING_URL}
+                                            className="mr-1"
+                                        >
+                                            Cài đặt
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <a
                                             href={LOGIN_URL}
                                             className="mr-1"
@@ -44,7 +52,7 @@ export class PageFooter extends BaseComponent<PageFooterProps> {
                                                 authClient.logout();
                                             }}
                                         >
-                                            <i className="fa fa-sign-out" aria-hidden="true"/> Đăng xuất
+                                            <i className="fa fa-sign-out" aria-hidden="true" /> Đăng xuất
                                         </a>
                                     </li>
                                 </ul>

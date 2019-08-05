@@ -15,7 +15,7 @@ import { CartOrderDetailTable, CartOrderNowBtn } from './containers';
 export class RouteCart extends BasePageComponent<AppPageProps> {
     public static readonly routeInfo: RouteInfo = {
         path: CART_URL,
-        title: 'B+ Furniture',
+        title: 'Giỏ hàng',
         exact: true,
         policies: [policies.locationAllowed]
     };

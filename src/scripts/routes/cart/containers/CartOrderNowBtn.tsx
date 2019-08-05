@@ -13,7 +13,7 @@ interface CartOrderNowBtnProps {
 
 export class CartOrderNowBtn extends BaseComponent<CartOrderNowBtnProps> {
     public render() {
-        const { cartOrderDetails, history } = this.context;
+        const { cartOrderDetails, history, setContext } = this.context;
 
         return (
             <BusinessController
@@ -25,12 +25,14 @@ export class CartOrderNowBtn extends BaseComponent<CartOrderNowBtnProps> {
                     history.push(
                         replaceRoutePath(ORDER_DETAIL_URL, { orderId: newOrder.id })
                     );
+                    
+                    setContext({
+                        cartOrderDetails: []
+                    });
                 }}
             >
                 {({ doBusiness }) => {
                     const onClick = () => {
-                        const { setContext } = this.context;
-
                         setContext({
                             globalModal: {
                                 onOk: () => doBusiness(),

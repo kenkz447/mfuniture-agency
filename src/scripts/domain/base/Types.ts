@@ -17,7 +17,7 @@ interface IdentyContext {
 }
 
 interface DataContext {
-    readonly cuurentAgency: Agency;
+    readonly curentAgency: Agency;
     readonly allProductTypeGroup: ProductTypeGroup[];
     readonly cartOrderDetails: OrderDetail[];
 }
