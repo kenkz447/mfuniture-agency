@@ -12,7 +12,7 @@
         "js-cookie": "^2.2.0",
         "jwt-decode": "^2.2.0",
         "lodash": "^4.17.15",
-        "marked": "^0.7.0",
+        "marked": "^4.0.10",
         "qoobee": "^0.4.9",
         "react": "^16.8.6",
         "react-context-service": "^1.2.4",
